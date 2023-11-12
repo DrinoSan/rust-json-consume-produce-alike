@@ -123,8 +123,8 @@ fn main() -> std::io::Result<()> {
     let writer = thread::spawn(|| write_json(tx, rx_producer));
     let reader = thread::spawn(|| read_json(rx, tx_producer));
 
-    writer.join().unwrap();
-    reader.join().unwrap();
+    let _ = writer.join().unwrap();
+    let _ = reader.join().unwrap();
 
     Ok(())
 }
